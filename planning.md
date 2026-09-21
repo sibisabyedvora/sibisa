@@ -256,17 +256,17 @@ Kerjakan berurutan. Milestone selesai **hanya** jika semua acceptance criteria t
 - [x] `.env.example` lengkap
 - [x] README berisi cara menjalankan
 
-### ☐ M1 — Auth & Layout
-- [ ] Migrasi 0001 (tabel + RLS + trigger trial)
-- [ ] Register/login (email+password, Google), verifikasi email, lupa password
-- [ ] Middleware proteksi dashboard
-- [ ] Shell dashboard (sidebar desktop, bottom-nav HP)
-- [ ] Halaman Settings dasar
+### ☑ M1 — Auth & Layout
+- [x] Migrasi 0001 (tabel + RLS + trigger trial)
+- [x] Register/login (email+password, Google), verifikasi email, lupa password
+- [x] Middleware proteksi dashboard
+- [x] Shell dashboard (sidebar desktop, bottom-nav HP)
+- [x] Halaman Settings dasar
 
 **Acceptance criteria:**
-- [ ] User baru: daftar → verifikasi → masuk dashboard kosong
-- [ ] Baris `subscriptions` trial otomatis terbentuk
-- [ ] Test RLS: user A tidak bisa baca/ubah data user B
+- [x] User baru: daftar → verifikasi → masuk dashboard kosong
+- [x] Baris `subscriptions` trial otomatis terbentuk
+- [x] Test RLS: user A tidak bisa baca/ubah data user B
 
 ### ☐ M2 — Business Profile, Knowledge Base & FAQ
 - [ ] Form Business Profile (Zod) + editor jam operasional
