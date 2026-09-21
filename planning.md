@@ -268,19 +268,19 @@ Kerjakan berurutan. Milestone selesai **hanya** jika semua acceptance criteria t
 - [x] Baris `subscriptions` trial otomatis terbentuk
 - [x] Test RLS: user A tidak bisa baca/ubah data user B
 
-### ☐ M2 — Business Profile, Knowledge Base & FAQ
-- [ ] Form Business Profile (Zod) + editor jam operasional
-- [ ] CRUD `knowledge_items` (produk/layanan, kebijakan) & FAQ
-- [ ] Indikator kapasitas & blokir bila > 10.000 karakter
-- [ ] Template FAQ per kategori
-- [ ] Checklist onboarding
-- [ ] Auto-buat chatbot + `public_key` saat bisnis dibuat
+### ☑ M2 — Business Profile, Knowledge Base & FAQ
+- [x] Form Business Profile (Zod) + editor jam operasional
+- [x] CRUD `knowledge_items` (produk/layanan, kebijakan) & FAQ
+- [x] Indikator kapasitas & blokir bila > 10.000 karakter
+- [x] Template FAQ per kategori
+- [x] Checklist onboarding
+- [x] Auto-buat chatbot + `public_key` saat bisnis dibuat
 
 **Acceptance criteria:**
-- [ ] Semua CRUD berfungsi & tervalidasi
-- [ ] Nyaman di layar 375px
-- [ ] >10.000 karakter ditolak dengan pesan jelas
-- [ ] Template kategori mengisi draf FAQ
+- [x] Semua CRUD berfungsi & tervalidasi
+- [x] Nyaman di layar 375px
+- [x] >10.000 karakter ditolak dengan pesan jelas
+- [x] Template kategori mengisi draf FAQ
 
 ### ☐ M3 — AI Core & Playground
 - [ ] `lib/ai/{prompt,schema,respond}.ts` (tool use, timeout, retry, fallback)
