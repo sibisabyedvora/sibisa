@@ -282,17 +282,17 @@ Kerjakan berurutan. Milestone selesai **hanya** jika semua acceptance criteria t
 - [x] >10.000 karakter ditolak dengan pesan jelas
 - [x] Template kategori mengisi draf FAQ
 
-### ☐ M3 — AI Core & Playground
-- [ ] `lib/ai/{prompt,schema,respond}.ts` (tool use, timeout, retry, fallback)
-- [ ] Halaman Chatbot Settings (nama, sapaan, gaya, fallback, warna, posisi, domain, teks CTA, toggle)
-- [ ] Playground (uji chat, tidak potong kuota)
-- [ ] `tests/ai-golden.json` + skrip evaluasi
+### ☑ M3 — AI Core & Playground
+- [x] `lib/ai/{prompt,schema,respond}.ts` (tool use, timeout, retry, fallback)
+- [x] Halaman Chatbot Settings (nama, sapaan, gaya, fallback, warna, posisi, domain, teks CTA, toggle)
+- [x] Playground (uji chat, tidak potong kuota)
+- [x] `tests/ai-golden.json` + skrip evaluasi
 
 **Acceptance criteria:**
-- [ ] Golden set ≥ 90% lulus
-- [ ] Pertanyaan di luar knowledge → `needs_handover = true`
-- [ ] Uji prompt-injection tidak membocorkan prompt
-- [ ] Median latensi < 3 detik
+- [x] Golden set ≥ 90% lulus
+- [x] Pertanyaan di luar knowledge → `needs_handover = true`
+- [x] Uji prompt-injection tidak membocorkan prompt
+- [x] Median latensi < 3 detik
 
 ### ☐ M4 — Widget & Public API
 - [ ] `public/widget.js` (≤ 5 KB)
