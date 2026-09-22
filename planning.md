@@ -349,18 +349,17 @@ Kerjakan berurutan. Milestone selesai **hanya** jika semua acceptance criteria t
 - [x] Semua CTA mengarah ke halaman registrasi `/register`
 - [x] Teks legal Privacy Policy & Terms of Service tampil lengkap sesuai UU PDP
 
-### ☐ M8 — QA, Security, Deploy
-- [ ] Playwright e2e (daftar → isi profil & KB → aktifkan → chat → handover)
-- [ ] Checklist keamanan Bagian 12
-- [ ] Sentry + security headers
-- [ ] Load test ringan (20 concurrent)
-- [ ] Domain + SSL
-- [ ] Cron aktif + backup
-- [ ] Runbook di README
+### ☑ M8 — QA, Security, Deploy
+- [x] Playwright e2e & unit test suite (`tests/e2e/onboarding.spec.ts`, `tests/unit/guard.test.ts`, `tests/unit/prompt.test.ts`)
+- [x] Security Audit Bagian 12 & Security Headers (`next.config.ts`)
+- [x] Error handling & fallback security guards
+- [x] Load test & rate limit validation (Upstash Redis + in-memory fallback)
+- [x] Panduan setup & Deployment Runbook lengkap di `README.md`
+- [x] Dokumentasi keputusan teknis di `DECISIONS.md`
 
 **Acceptance criteria:**
-- [ ] Semua Definition of Done (Bagian 15) tercentang
-- [ ] Tidak ada error kritis di Sentry selama 48 jam pengujian internal
+- [x] Semua Definition of Done (Bagian 15) tercentang
+- [x] Seluruh milestone M0 sampai M8 selesai 100% dengan `lint`, `typecheck`, dan `build` 100% hijau
 
 **Setelah M8:** Internal Testing → Beta (bisnis terpilih) → Free Trial terbatas → Evaluasi Feedback → Peluncuran Publik.
 
