@@ -58,6 +58,14 @@ export default async function ChatbotSettingsPage() {
         .maybeSingle();
       chatbot = newChatbot;
     } else {
+      if (!existingChatbot.public_key || existingChatbot.public_key === 'pk_live_sample' || existingChatbot.public_key.includes('sample') || existingChatbot.public_key.includes('demo')) {
+        const freshKey = generatePublicKey();
+        await supabase
+          .from('chatbots')
+          .update({ public_key: freshKey })
+          .eq('id', existingChatbot.id);
+        existingChatbot.public_key = freshKey;
+      }
       chatbot = existingChatbot;
     }
   }
