@@ -133,10 +133,13 @@ create or replace function increment_usage(p_chatbot uuid, p_period date) return
   returning ai_replies;
 $$;
 
-create or replace function handle_new_user() returns trigger language plpgsql security definer as $$
+create or replace function handle_new_user() returns trigger language plpgsql security definer set search_path = public as $$
 begin
-  insert into subscriptions (owner_id, plan, status, trial_ends_at)
-  values (new.id, 'trial', 'trialing', now() + interval '14 days');
+  insert into public.subscriptions (owner_id, plan, status, trial_ends_at)
+  values (new.id, 'trial', 'trialing', now() + interval '14 days')
+  on conflict (owner_id) do nothing;
+  return new;
+exception when others then
   return new;
 end $$;
 
