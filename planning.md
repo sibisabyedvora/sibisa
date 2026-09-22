@@ -294,23 +294,23 @@ Kerjakan berurutan. Milestone selesai **hanya** jika semua acceptance criteria t
 - [x] Uji prompt-injection tidak membocorkan prompt
 - [x] Median latensi < 3 detik
 
-### ☐ M4 — Widget & Public API
-- [ ] `public/widget.js` (≤ 5 KB)
-- [ ] `/embed/[publicKey]`
-- [ ] API config/chat/lead/event
-- [ ] Guard layer (aktif, domain, langganan, rate limit, kuota)
-- [ ] Simpan `conversations`/`messages`/`leads`
-- [ ] CTA WhatsApp (`wa.me` + ringkasan)
-- [ ] Quick replies
-- [ ] CSP `frame-ancestors` dinamis
-- [ ] Snippet embed + tombol salin
+### ☑ M4 — Widget & Public API
+- [x] `public/widget.js` (≤ 5 KB)
+- [x] `/embed/[publicKey]`
+- [x] API config/chat/lead/event
+- [x] Guard layer (aktif, domain, langganan, rate limit, kuota)
+- [x] Simpan `conversations`/`messages`/`leads`
+- [x] CTA WhatsApp (`wa.me` + ringkasan)
+- [x] Quick replies
+- [x] CSP `frame-ancestors` dinamis
+- [x] Snippet embed + tombol salin
 
 **Acceptance criteria:**
-- [ ] Snippet ditempel di HTML statis → widget muncul & bisa chat
-- [ ] Layar penuh di HP
-- [ ] Handover buka WhatsApp dengan teks terisi
-- [ ] Lewat rate limit → 429 tertangani rapi
-- [ ] Domain tak diizinkan → widget tidak tampil
+- [x] Snippet ditempel di HTML statis → widget muncul & bisa chat
+- [x] Layar penuh di HP
+- [x] Handover buka WhatsApp dengan teks terisi
+- [x] Lewat rate limit → 429 tertangani rapi
+- [x] Domain tak diizinkan → widget tidak tampil
 
 ### ☐ M5 — History, Leads, Analytics
 - [ ] 4 kartu statistik + grafik tren 14 hari
