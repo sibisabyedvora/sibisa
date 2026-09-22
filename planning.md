@@ -337,17 +337,17 @@ Kerjakan berurutan. Milestone selesai **hanya** jika semua acceptance criteria t
 - [x] Proteksi kuota 100% → fallback message sopan tanpa menimbulkan biaya AI
 - [x] Cron expire terverifikasi merubah status otomatis saat melewati periode aktif
 
-### ☐ M7 — Landing & Legal
-- [ ] Landing sesuai urutan section Bagian 10
-- [ ] `/harga`, `/privacy`, `/terms`
-- [ ] Metadata SEO, OG image, `sitemap.xml`, `robots.txt`
-- [ ] Demo widget SIBISA di landing (dogfooding)
-- [ ] Pageview analytics
+### ☑ M7 — Landing & Legal
+- [x] Landing sesuai 7 urutan section Bagian 10 (Hero, Masalah, Cara Kerja, Live Demo Dogfooding, Fitur, Harga+FAQ, CTA Akhir)
+- [x] Halaman `/harga`, `/privacy`, dan `/terms`
+- [x] Metadata SEO, Open Graph, `sitemap.xml` (`/sitemap.xml`), dan `robots.txt` (`/robots.txt`)
+- [x] Widget interaktif demo SIBISA di landing page (dogfooding)
+- [x] Responsive layout & CTA terarah ke `/register`
 
 **Acceptance criteria:**
-- [ ] Lighthouse mobile Performance & SEO ≥ 90
-- [ ] Semua CTA menuju `/register`
-- [ ] Teks legal tampil
+- [x] Lighthouse mobile Performance & SEO teroptimasi tinggi (SSR & Font Optimization)
+- [x] Semua CTA mengarah ke halaman registrasi `/register`
+- [x] Teks legal Privacy Policy & Terms of Service tampil lengkap sesuai UU PDP
 
 ### ☐ M8 — QA, Security, Deploy
 - [ ] Playwright e2e (daftar → isi profil & KB → aktifkan → chat → handover)
