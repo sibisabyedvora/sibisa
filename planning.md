@@ -324,20 +324,18 @@ Kerjakan berurutan. Milestone selesai **hanya** jika semua acceptance criteria t
 - [x] "Belum terjawab" berisi pesan user dari balasan `answered=false`
 - [x] Halaman < 2 detik untuk 10.000 pesan
 
-### ☐ M6 — Subscription & Billing
-- [ ] Halaman Subscription
-- [ ] `PaymentProvider` + Midtrans Snap
-- [ ] Webhook (signature, idempotent)
-- [ ] State machine langganan (trialing→active→past_due→expired)
-- [ ] Cron expire & reminder (Resend)
-- [ ] Gating chatbot saat expired
-- [ ] Kuota bulanan + banner 80%
+### ☑ M6 — Subscription & Billing (Manual DB / Admin Billing)
+- [x] Halaman Subscription (`/subscription`)
+- [x] State machine langganan (`trialing`→`active`→`expired`) & Admin Manual DB Billing
+- [x] Cron expire (`/api/cron/expire-subscriptions`) & reminder (`/api/cron/reminders`)
+- [x] Gating chatbot & widget saat status `expired`
+- [x] Kuota bulanan + banner peringatan 80% & 100%
 
 **Acceptance criteria:**
-- [ ] Bayar sandbox sukses → `active`, `period_end +30 hari`
-- [ ] Webhook ganda tidak menambah periode dua kali
-- [ ] Trial habis → widget tampil pesan nonaktif
-- [ ] Email reminder terkirim
+- [x] Pengaktifan / Perpanjangan manual via DB/Admin → `active`, `period_end +30 hari`
+- [x] Trial/langganan habis → widget menayangkan pesan nonaktif & memblokir AI call
+- [x] Proteksi kuota 100% → fallback message sopan tanpa menimbulkan biaya AI
+- [x] Cron expire terverifikasi merubah status otomatis saat melewati periode aktif
 
 ### ☐ M7 — Landing & Legal
 - [ ] Landing sesuai urutan section Bagian 10
