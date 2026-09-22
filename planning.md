@@ -312,17 +312,17 @@ Kerjakan berurutan. Milestone selesai **hanya** jika semua acceptance criteria t
 - [x] Lewat rate limit → 429 tertangani rapi
 - [x] Domain tak diizinkan → widget tidak tampil
 
-### ☐ M5 — History, Leads, Analytics
-- [ ] 4 kartu statistik + grafik tren 14 hari
-- [ ] Chat History (tabel, filter, detail thread)
-- [ ] Leads (daftar, ubah status, export CSV)
-- [ ] Analytics dasar (answer rate, handover rate, jam tersibuk, pertanyaan belum terjawab)
-- [ ] Seed data demo
+### ☑ M5 — History, Leads, Analytics
+- [x] 4 kartu statistik + grafik tren 14 hari
+- [x] Chat History (tabel, filter, detail thread)
+- [x] Leads (daftar, ubah status, export CSV)
+- [x] Analytics dasar (answer rate, handover rate, jam tersibuk, pertanyaan belum terjawab)
+- [x] Seed data demo
 
 **Acceptance criteria:**
-- [ ] Angka dashboard = hasil query manual pada data seed
-- [ ] "Belum terjawab" berisi pesan user dari balasan `answered=false`
-- [ ] Halaman < 2 detik untuk 10.000 pesan
+- [x] Angka dashboard = hasil query manual pada data seed
+- [x] "Belum terjawab" berisi pesan user dari balasan `answered=false`
+- [x] Halaman < 2 detik untuk 10.000 pesan
 
 ### ☐ M6 — Subscription & Billing
 - [ ] Halaman Subscription

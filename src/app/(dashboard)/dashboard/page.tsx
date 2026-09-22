@@ -13,7 +13,11 @@ import {
   Clock,
   Users,
   AlertTriangle,
+  TrendingUp,
 } from 'lucide-react';
+import { getAnalyticsSummary } from '@/lib/actions/analytics';
+import { TrendChart } from '@/components/dashboard/trend-chart';
+import { SeedDemoButton } from '@/components/dashboard/seed-button';
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -37,6 +41,34 @@ export default async function DashboardPage() {
     .eq('owner_id', user?.id || '')
     .maybeSingle();
 
+  // Fetch analytics summary metrics
+  const analytics = await getAnalyticsSummary();
+
+  // Fetch usage counter for current period
+  let currentUsage = 0;
+  if (business) {
+    const { data: chatbot } = await supabase
+      .from('chatbots')
+      .select('id')
+      .eq('business_id', business.id)
+      .maybeSingle();
+
+    if (chatbot) {
+      const today = new Date();
+      const periodStr = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-01`;
+      const { data: usage } = await supabase
+        .from('usage_counters')
+        .select('ai_replies')
+        .eq('chatbot_id', chatbot.id)
+        .eq('period', periodStr)
+        .maybeSingle();
+
+      if (usage) currentUsage = usage.ai_replies;
+    }
+  }
+
+  const quotaMax = subscription?.plan === 'basic' ? 600 : 100;
+
   return (
     <div className="space-y-6">
       {/* Header Banner */}
@@ -50,16 +82,17 @@ export default async function DashboardPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
+          <SeedDemoButton />
           <Link href="/chatbot">
             <Button size="sm" className="gap-2 shadow-sm">
               <Bot className="h-4 w-4" />
-              Uji Chatbot di Playground
+              Playground Chatbot
             </Button>
           </Link>
         </div>
       </div>
 
-      {/* Subscription Status Card */}
+      {/* Subscription & Usage Counter Card */}
       <Card className="border border-primary/20 bg-gradient-to-r from-primary-light via-card to-card p-6 shadow-sm">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-4">
@@ -69,14 +102,14 @@ export default async function DashboardPage() {
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-base font-bold text-foreground">
-                  Paket Status: {subscription?.plan === 'basic' ? 'Paket Basic (Rp75.000/bln)' : 'Free Trial 14 Hari'}
+                  Status Langganan: {subscription?.plan === 'basic' ? 'Paket Basic (Rp75.000/bln)' : 'Free Trial 14 Hari'}
                 </span>
                 <span className="inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-semibold text-emerald-800">
                   {subscription?.status || 'Active'}
                 </span>
               </div>
               <p className="text-xs text-muted-foreground mt-1">
-                Kuota AI Balasan: <strong>0 / 100 balasan</strong> terpakai bulan ini.
+                Kuota AI Balasan: <strong>{currentUsage} / {quotaMax} balasan</strong> terpakai bulan ini.
               </p>
             </div>
           </div>
@@ -88,7 +121,7 @@ export default async function DashboardPage() {
         </div>
       </Card>
 
-      {/* Quick Stats Grid */}
+      {/* 4 Quick Stats Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card className="p-5">
           <div className="flex items-center justify-between">
@@ -97,8 +130,10 @@ export default async function DashboardPage() {
               <MessageSquare className="h-4 w-4" />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-extrabold text-foreground">0</div>
-          <p className="text-[11px] text-muted-foreground mt-1">Belum ada chat pengunjung</p>
+          <div className="mt-3 text-2xl font-extrabold text-foreground">
+            {analytics.totalConversations}
+          </div>
+          <p className="text-[11px] text-muted-foreground mt-1">Sesi chat pengunjung</p>
         </Card>
 
         <Card className="p-5">
@@ -108,7 +143,9 @@ export default async function DashboardPage() {
               <CheckCircle2 className="h-4 w-4" />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-extrabold text-foreground">100%</div>
+          <div className="mt-3 text-2xl font-extrabold text-foreground">
+            {analytics.answerRate}%
+          </div>
           <p className="text-[11px] text-muted-foreground mt-1">Dijawab langsung dari KB</p>
         </Card>
 
@@ -119,8 +156,10 @@ export default async function DashboardPage() {
               <Clock className="h-4 w-4" />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-extrabold text-foreground">0</div>
-          <p className="text-[11px] text-muted-foreground mt-1">Klik lanjut ke WA</p>
+          <div className="mt-3 text-2xl font-extrabold text-foreground">
+            {analytics.handoverRate}%
+          </div>
+          <p className="text-[11px] text-muted-foreground mt-1">Lanjut ke WhatsApp admin</p>
         </Card>
 
         <Card className="p-5">
@@ -130,12 +169,36 @@ export default async function DashboardPage() {
               <Users className="h-4 w-4" />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-extrabold text-foreground">0</div>
+          <div className="mt-3 text-2xl font-extrabold text-foreground">
+            {analytics.totalLeads}
+          </div>
           <p className="text-[11px] text-muted-foreground mt-1">Calon pembeli terdata</p>
         </Card>
       </div>
 
-      {/* Onboarding Checklist Card */}
+      {/* 14-Day Trend Chart Card */}
+      <Card className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-base font-bold text-foreground flex items-center gap-2">
+              <TrendingUp className="h-4 w-4 text-primary" />
+              Tren Percakapan & Balasan AI (14 Hari Terakhir)
+            </h3>
+            <p className="text-xs text-muted-foreground">
+              Pantau dinamika lalu lintas chat pengunjung toko online kamu.
+            </p>
+          </div>
+          <Link href="/analytics">
+            <Button variant="ghost" size="sm" className="text-xs text-primary gap-1">
+              Lihat Analitik Lengkap
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Button>
+          </Link>
+        </div>
+        <TrendChart data={analytics.trend14Days} />
+      </Card>
+
+      {/* Onboarding Checklist Card if profile incomplete */}
       {!business && (
         <Card className="border border-amber-200 bg-amber-50/50 p-6">
           <div className="flex items-start gap-4">
